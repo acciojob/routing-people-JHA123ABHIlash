@@ -33,7 +33,7 @@ export default function UserList() {
         <h1>User List</h1>
 
         {
-            loading ? "Loading..." : (<ul>
+            loading ? (<div>Loading...</div>) : (<ul>
          {
             data.map((el)=>(
                 <li key={el.id}>

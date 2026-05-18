@@ -33,11 +33,11 @@ export default function UserDetails() {
       {
         filtered.map((user)=>(
           <div key={user.id}>
-        <p>{user.name}</p>
-        <p>{user.username}</p>
-        <p>{user.email}</p>
-        <p>{user.phone}</p>
-        <p>{user.website}</p>
+        <p>Name: {user.name}</p>
+        <p>Username: {user.username}</p>
+        <p>Email: {user.email}</p>
+        <p>Phone: {user.phone}</p>
+        <p>Website: {user.website}</p>
       </div>
         ))
       }
