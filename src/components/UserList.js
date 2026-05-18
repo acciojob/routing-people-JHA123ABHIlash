@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import Spinner from './Spinner';
 
 export default function UserList() {
     const api="https://jsonplaceholder.typicode.com/users";
 
     const [loading,setLoading]=useState(true);
     const [data,setData]=useState([]);
-
-    console.log(data);
 
     async function fetchData(){
         
@@ -37,7 +36,7 @@ export default function UserList() {
         <h1>User List</h1>
 
         {
-            loading ? (<div>Loading...</div>) : (<ul>
+            loading ? (<Spinner/>) : (<ul>
          {
             data.map((el)=>(
                 <li key={el.id}>
