@@ -15,11 +15,16 @@ export default function UserList() {
             const res=await fetch(api);
              setData(await res.json());
 
+              setTimeout(() => {
+            setLoading(false);
+        }, 500);
+
         } catch (error) {
             setData([]);
             console.log(error);
+            setLoading(false);
         }
-        setLoading(false);
+        
         
     }
 
