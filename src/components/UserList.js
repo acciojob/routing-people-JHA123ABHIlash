@@ -4,14 +4,13 @@ import { Link } from 'react-router-dom';
 export default function UserList() {
     const api="https://jsonplaceholder.typicode.com/users";
 
-    const [loading,setLoading]=useState(false);
+    const [loading,setLoading]=useState(true);
     const [data,setData]=useState([]);
 
     console.log(data);
 
     async function fetchData(){
         
-              setLoading(true);
         try {
             const res=await fetch(api);
              setData(await res.json());
