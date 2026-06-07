@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import "regenerator-runtime/runtime";
 
 export default function UserList() {
-    
     const url="https://jsonplaceholder.typicode.com/users";
     const [loading,setLoading]=useState(false);
     const [data,setData]=useState([]);
@@ -33,7 +32,9 @@ export default function UserList() {
         <ul>
             {loading ? (<div>Loading...</div>):(
                 data.map((el)=>{
-                return <Link  to={`/users/${el.id}`} key={el.id}><li>{el.name}</li></Link>
+                return  <li key={el.id}>
+        <Link to={`/users/${el.id}`}>{el.name}</Link>
+      </li>
             })
             )}
         </ul>

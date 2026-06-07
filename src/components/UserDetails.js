@@ -36,11 +36,11 @@ const url="https://jsonplaceholder.typicode.com/users";
             (<div>Loading...</div>):
             (
                filterdata.map((el)=>(
-                <div>
-                  <p>Name: {el.name}</p>
-                  <p>Username: {el.username}</p>
-                  <p>Email: {el.email}</p>
-                  <p>Website: {el.website}</p>
+                <div key={el.id}>
+                  <p><b>Name: </b>{el.name}</p>
+                  <p><b>Username: </b>{el.username}</p>
+                  <p><b>Email: </b>{el.email}</p>
+                  <p><b>Website: </b>{el.website}</p>
                 </div>
                ))
             )
