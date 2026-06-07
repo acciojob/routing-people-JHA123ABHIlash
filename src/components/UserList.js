@@ -1,53 +1,42 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import Spinner from './Spinner';
+import "regenerator-runtime/runtime";
 
 export default function UserList() {
-    const api="https://jsonplaceholder.typicode.com/users";
-
-    const [loading,setLoading]=useState(true);
+    
+    const url="https://jsonplaceholder.typicode.com/users";
+    const [loading,setLoading]=useState(false);
     const [data,setData]=useState([]);
 
     async function fetchData(){
-        
+        setLoading(true);
         try {
-            const res=await fetch(api);
-             setData(await res.json());
-
-              setTimeout(() => {
-            setLoading(false);
-        }, 500);
+            const res=await fetch(url);
+            const datas=await res.json();
+            setData(datas);
 
         } catch (error) {
             setData([]);
-            console.log(error);
-            setLoading(false);
+            
         }
-        
-        
+        setLoading(false);
     }
-
     useEffect(()=>{
-        fetchData();
+        fetchData()
     },[]);
 
+    console.log(data);
   return (
     <div>
         <h1>User List</h1>
 
-        {
-            loading ? (<Spinner/>) : (<ul>
-         {
-            data.map((el)=>(
-                <li key={el.id}>
-                   <Link to={`/users/${el.id}`}> {el.name}</Link>
-                </li>
-            ))
-         }
-       </ul>)
-        }
-
-    
+        <ul>
+            {loading ? (<div>Loading...</div>):(
+                data.map((el)=>{
+                return <Link  to={`/users/${el.id}`} key={el.id}><li>{el.name}</li></Link>
+            })
+            )}
+        </ul>
     </div>
   )
 }

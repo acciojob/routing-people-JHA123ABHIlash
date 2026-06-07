@@ -1,40 +1,51 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState,useEffect } from 'react'
+import { useParams } from 'react-router-dom';
 
 export default function UserDetails() {
-  const api = "https://jsonplaceholder.typicode.com/users";
-  const [ApiData, setApiData] = useState([]);
-  const { id } = useParams();
-  // console.log(param)
+const url="https://jsonplaceholder.typicode.com/users";
+  const {id}=useParams();
+  const [loading,setLoading]=useState(false);
+  const [data,setData]=useState([]);
+  
 
-  async function fetchData() {
-    try {
-      const res = await fetch(api);
-      setApiData(await res.json());
-    } catch (err) {
-      setApiData([]);
-      console.log(err);
-    }
-  }
+      async function fetchData(){
+          setLoading(true);
+          try {
+              const res=await fetch(url);
+              const datas=await res.json();
+              setData(datas);
+  
+          } catch (error) {
+              setData([]);
+              
+          }
+          setLoading(false);
+      }
+      useEffect(()=>{
+          fetchData()
+      },[]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const user = ApiData.find((el) => el.id == id);
-
+      const filterdata=data.filter((el)=>(el.id==id));
+      console.log("filter data is:",filterdata);
   return (
     <div>
       <h1>User Details</h1>
-      {user && (
-        <div>
-          <p>Name: {user.name}</p>
-          <p>Username: {user.username}</p>
-          <p>Email: {user.email}</p>
-          <p>Phone: {user.phone}</p>
-          <p>Website: {user.website}</p>
-        </div>
-      )}
+      
+         {
+            loading ? 
+            (<div>Loading...</div>):
+            (
+               filterdata.map((el)=>(
+                <div>
+                  <p>Name: {el.name}</p>
+                  <p>Username: {el.username}</p>
+                  <p>Email: {el.email}</p>
+                  <p>Website: {el.website}</p>
+                </div>
+               ))
+            )
+         }
+      
     </div>
-  );
+  )
 }
