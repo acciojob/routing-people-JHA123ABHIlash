@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 export default function UserDetails() {
 const url="https://jsonplaceholder.typicode.com/users";
   const {id}=useParams();
-  const [loading,setLoading]=useState(false);
+  const [loading, setLoading] = useState(true);
   const [data,setData]=useState([]);
   
 
