@@ -40,6 +40,7 @@ const url="https://jsonplaceholder.typicode.com/users";
                   <p><b>Name: </b>{el.name}</p>
                   <p><b>Username: </b>{el.username}</p>
                   <p><b>Email: </b>{el.email}</p>
+                  <p><b>Phone: </b>{el.phone}</p>
                   <p><b>Website: </b>{el.website}</p>
                 </div>
                ))
